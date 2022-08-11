@@ -22,30 +22,6 @@ mkdir -p /var/jenkins_home/https
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
 
-cat > /var/jenkins_home/https/https.config << _EOF_
-
-[ req ]
-default_bits       = 2048
-default_md         = sha256
-default_keyfile    = key.pem
-prompt             = no
-encrypt_rsa_key    = no
-
-distinguished_name = req_distinguished_name
-req_extensions     = v3_req
-extensions         = v3_req
-
-[ req_distinguished_name ]
-commonName             = "localhost"
-
-[ v3_req ]
-subjectAltName      = DNS:localhost
-
-_EOF_
-
-# openssl req -config /var/jenkins_home/https/https.config -new -out /var/jenkins_home/https/csr.pem
-# openssl x509 -req -days 365 -extfile /var/jenkins_home/https/https.config -extensions v3_req -in /var/jenkins_home/https/csr.pem -signkey key.pem -out /var/jenkins_home/https/https.crt
-
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /var/jenkins_home/https/https.key -out /var/jenkins_home/https/https.crt -subj "/C=BE/ST=Vlaams-Brabant/L=VHalle/O=DevOps/OU=Operations/CN=localhost"
 openssl pkcs12 -export -out /var/jenkins_home/https/https.pfx -inkey /var/jenkins_home/https/https.key -in /var/jenkins_home/https/https.crt -password pass:password
 
