@@ -10,6 +10,7 @@ namespace Domain.Common
         public string Postalcode { get; }
         public string Street { get; }
 
+        private Address() { }
         public Address(string country, string city, string postalcode, string street)
         {
             Country = Guard.Against.NullOrEmpty(country, nameof(country));

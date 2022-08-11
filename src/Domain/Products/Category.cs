@@ -13,6 +13,7 @@ namespace Domain.Products
             set => name = Guard.Against.NullOrWhiteSpace(value, nameof(name));
         }
 
+        private Category() { }
         public Category(string name)
         {
             Name = name;

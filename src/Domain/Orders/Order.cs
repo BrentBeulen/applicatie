@@ -9,34 +9,34 @@ namespace Domain.Orders
 {
     public class Order : Entity
     {
-        private readonly List<OrderLine> _lines = new();
+        private List<OrderLine> _items = new();
 
         public DateTime OrderDate { get; }
         public DeliveryDate DeliveryDate { get; }
         public bool HasGiftWrapping { get; }
         public Address ShippingAddress { get; }
-        public IReadOnlyList<OrderLine> Items => _lines.AsReadOnly();
         public Customer Customer { get; set; }
 
+        public IReadOnlyList<OrderLine> Items => _items.AsReadOnly();
         public Money Total => Items.Sum(line => line.Price * line.Quantity);
 
+        private Order() { }
         public Order(Cart cart, DeliveryDate deliveryDate, bool hasGiftWrapping, Customer customer, Address shippingAddress)
         {
-            ShippingAddress = Guard.Against.Null(shippingAddress,nameof(shippingAddress));
-            Guard.Against.Null(cart,nameof(cart));
+            ShippingAddress = Guard.Against.Null(shippingAddress, nameof(shippingAddress));
+            Guard.Against.Null(cart, nameof(cart));
             Guard.Against.Zero(cart.Lines.Count, $"{nameof(Cart)} {nameof(Cart.Lines)}");
             OrderDate = DateTime.UtcNow;
             DeliveryDate = deliveryDate;
             HasGiftWrapping = hasGiftWrapping;
             Customer = customer;
-            
+
             foreach (var line in cart.Lines)
             {
-                _lines.Add(new OrderLine(line.Product, line.Quantity));
+                _items.Add(new OrderLine(line.Product, line.Quantity));
             }
 
             cart.Clear();
-
         }
     }
 }
