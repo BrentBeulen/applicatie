@@ -22,7 +22,7 @@ mkdir -p tempdir/https
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
 
-cat > tempdir/https/https << _EOF_
+cat > tempdir/https/https.config << _EOF_
 
 [ req ]
 default_bits       = 2048
@@ -46,9 +46,9 @@ extendedKeyUsage    = critical, 1.3.6.1.5.5.7.3.1
 
 _EOF_
 
-openssl req -config https.config -new -out csr.pem
-openssl x509 -req -days 365 -extfile https.config -extensions v3_req -in csr.pem -signkey key.pem -out https.crt
-openssl pkcs12 -export -out https.pfx -inkey key.pem -in https.crt -password password
+openssl req -config tempdir/https/https.config -new -out tempdir/https/csr.pem
+openssl x509 -req -days 365 -extfile tempdir/https/https.config -extensions v3_req -in tempdir/https/csr.pem -signkey tempdir/https/key.pem -out tempdir/https/https.crt
+openssl pkcs12 -export -out tempdir/https/https.pfx -inkey tempdir/https/key.pem -in tempdir/https/https.crt -password password
 
 cat > tempdir/Dockerfile << _EOF_
 
