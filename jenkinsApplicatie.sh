@@ -1,6 +1,19 @@
 #!/bin/bash
 # bash ./jenkinsApplicatie.sh
-# dit is de test
+
+#    ```text
+#    node {
+#        stage('Preparation') {
+#            catchError(buildResult: 'SUCCESS') {
+#                sh 'docker stop SportStoreApp'
+#                sh 'docker rm SportStoreApp'
+#            }
+#        }
+#        stage('Build') {
+#            build 'BuildSampleApp'
+#        }
+#    }
+#    ```
 
 set -euo pipefail
 
