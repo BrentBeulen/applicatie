@@ -1,7 +1,6 @@
 #!/bin/bash
 # bash ./jenkinsApplicatie.sh
 
-#    ```text
 #    node {
 #        stage('Preparation') {
 #            catchError(buildResult: 'SUCCESS') {
@@ -13,7 +12,6 @@
 #            build 'BuildSampleApp'
 #        }
 #    }
-#    ```
 
 set -euo pipefail
 
