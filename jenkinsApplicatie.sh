@@ -53,6 +53,7 @@ ENTRYPOINT ["dotnet", "Server.dll"]
 _EOF_
 
 cd tempdir || exit
+docker stop sportstore || true && docker rm sportstore || true
 docker build -t sportstore .
-docker run -t -d -p 80:80 --name SportStoreApp sportstore
+docker run -t -p 80:80 --name SportStoreApp sportstore
 docker ps -a 
