@@ -32,22 +32,19 @@ prompt             = no
 encrypt_rsa_key    = no
 
 distinguished_name = req_distinguished_name
-req_extensions     = san
-extensions    = san
+req_extensions     = v3_req
+extensions         = v3_req
 
 [ req_distinguished_name ]
 commonName             = "localhost"
 
 [ v3_req ]
 subjectAltName      = DNS:localhost
-basicConstraints    = critical, CA:false
-keyUsage            = critical, keyEncipherment
-extendedKeyUsage    = critical, 1.3.6.1.5.5.7.3.1
 
 _EOF_
 
 openssl req -config /var/jenkins_home/https/https.config -new -out /var/jenkins_home/https/csr.pem
-openssl x509 -req -days 365 -extfile /var/jenkins_home/https/https.config -extensions v3_req -in /var/jenkins_home/https/csr.pem -signkey key.pem -out /var/jenkins_home/https/https.crt
+openssl x509 -req -days 365 -nodes -newkey rsa:2048 -extfile /var/jenkins_home/https/https.config -extensions v3_req -in /var/jenkins_home/https/csr.pem -signkey key.pem -out /var/jenkins_home/https/https.crt
 openssl pkcs12 -export -out /var/jenkins_home/https/https.pfx -inkey key.pem -in /var/jenkins_home/https/https.crt -password pass:password
 
 cat > tempdir/Dockerfile << _EOF_
