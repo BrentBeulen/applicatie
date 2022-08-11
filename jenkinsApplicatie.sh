@@ -29,7 +29,7 @@ default_bits       = 2048
 default_md         = sha256
 default_keyfile    = key.pem
 prompt             = no
-encrypt_key    = no
+encrypt_rsa_key        = no
 
 distinguished_name = req_distinguished_name
 req_extensions     = v3_req
@@ -98,5 +98,5 @@ _EOF_
 
 cd tempdir || exit
 docker build -t sportstore .
-docker run -t -p 7000:80 -p 7001:443 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
+docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
 docker ps -a 
