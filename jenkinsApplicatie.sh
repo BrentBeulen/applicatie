@@ -26,10 +26,10 @@ cat > /var/jenkins_home/https/https.config << _EOF_
 
 [ req ]
 default_bits       = 2048
-default_md         = rsa
+default_md         = sha256
 default_keyfile    = key.pem
 prompt             = no
-encrypt_key        = no
+encrypt_rsa_key    = no
 
 distinguished_name = req_distinguished_name
 req_extensions     = v3_req
