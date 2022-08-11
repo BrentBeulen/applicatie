@@ -1,6 +1,6 @@
 #!/bin/bash
 # bash ./jenkinsApplicatie.sh
-# dit is een test voor jenkins webhook
+# dit is de test
 
 set -euo pipefail
 
