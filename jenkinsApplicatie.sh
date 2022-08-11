@@ -44,7 +44,7 @@ subjectAltName      = DNS:localhost
 _EOF_
 
 openssl req -config /var/jenkins_home/https/https.config -new -out /var/jenkins_home/https/csr.pem
-openssl x509 -req -days 365 -nodes -newkey rsa:2048 -extfile /var/jenkins_home/https/https.config -extensions v3_req -in /var/jenkins_home/https/csr.pem -signkey key.pem -out /var/jenkins_home/https/https.crt
+openssl x509 -req -days 365 -newkey rsa:2048 -extfile /var/jenkins_home/https/https.config -extensions v3_req -in /var/jenkins_home/https/csr.pem -signkey key.pem -out /var/jenkins_home/https/https.crt
 openssl pkcs12 -export -out /var/jenkins_home/https/https.pfx -inkey key.pem -in /var/jenkins_home/https/https.crt -password pass:password
 
 cat > tempdir/Dockerfile << _EOF_
