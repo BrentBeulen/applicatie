@@ -1,8 +1,10 @@
 #!/bin/bash
+# bash ./jenkinsApplicatie.sh
+
 set -euo pipefail
 
-mkdir tempdir
-mkdir tempdir/src
+mkdir -p tempdir
+mkdir -p tempdir/src
 
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
@@ -51,6 +53,6 @@ ENTRYPOINT ["dotnet", "Server.dll"]
 _EOF_
 
 cd tempdir || exit
-docker build -t SportStore .
-docker run -t -d -p 80:80 --name SportStoreApp SportStore
+docker build -t sportstore .
+docker run -t -d -p 80:80 --name SportStoreApp sportstore
 docker ps -a 
