@@ -29,11 +29,11 @@ default_bits       = 2048
 default_md         = sha256
 default_keyfile    = key.pem
 prompt             = no
-encrypt_rsa_key        = no
+encrypt_rsa_key    = no
 
 distinguished_name = req_distinguished_name
-req_extensions     = v3_req
-x509_extensions    = v3_req
+req_extensions     = san
+extensions    = san
 
 [ req_distinguished_name ]
 commonName             = "localhost"
