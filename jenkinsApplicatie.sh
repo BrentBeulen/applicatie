@@ -54,7 +54,6 @@ ENTRYPOINT ["dotnet", "Server.dll"]
 _EOF_
 
 cd tempdir || exit
-docker stop SportStoreApp || true && docker rm SportStoreApp || true
 docker build -t sportstore .
 docker run -t -p 80:80 --network vagrant_default --name SportStoreApp sportstore
 docker ps -a 
