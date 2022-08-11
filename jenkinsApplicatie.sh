@@ -46,7 +46,7 @@ _EOF_
 # openssl req -config /var/jenkins_home/https/https.config -new -out /var/jenkins_home/https/csr.pem
 # openssl x509 -req -days 365 -extfile /var/jenkins_home/https/https.config -extensions v3_req -in /var/jenkins_home/https/csr.pem -signkey key.pem -out /var/jenkins_home/https/https.crt
 
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /var/jenkins_home/https/https.key -out /var/jenkins_home/https/https.crt
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /var/jenkins_home/https/https.key -out /var/jenkins_home/https/https.crt -subj "/C=BE/ST=Vlaams-Brabant/L=VHalle/O=DevOps/OU=Operations/CN=localhost"
 openssl pkcs12 -export -out /var/jenkins_home/https/https.pfx -inkey /var/jenkins_home/https/https.key -in /var/jenkins_home/https/https.crt -password pass:password
 
 cat > tempdir/Dockerfile << _EOF_
