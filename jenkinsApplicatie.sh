@@ -29,7 +29,7 @@ default_bits       = 2048
 default_md         = sha256
 default_keyfile    = key.pem
 prompt             = no
-encrypt_rsa_key    = no
+encrypt_key    = no
 
 distinguished_name = req_distinguished_name
 req_extensions     = v3_req
