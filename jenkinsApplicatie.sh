@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-mkdir tempdir
-mkdir tempdir/src
+mkdir -p tempdir
+mkdir -p tempdir/src
 
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
