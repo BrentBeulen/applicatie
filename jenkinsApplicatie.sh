@@ -99,5 +99,5 @@ _EOF_
 
 cd tempdir || exit
 docker build -t sportstore .
-docker run -t -p 443:443 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
+docker run -t -p 80:80 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
 docker ps -a 
