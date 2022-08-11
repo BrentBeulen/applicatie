@@ -48,7 +48,7 @@ _EOF_
 
 openssl req -config tempdir/https/https.config -new -out tempdir/https/csr.pem
 openssl x509 -req -days 365 -extfile tempdir/https/https.config -extensions v3_req -in tempdir/https/csr.pem -signkey key.pem -out tempdir/https/https.crt
-openssl pkcs12 -export -out tempdir/https/https.pfx -inkey key.pem -in tempdir/https/https.crt -password pass:<<password>>
+openssl pkcs12 -export -out tempdir/https/https.pfx -inkey key.pem -in tempdir/https/https.crt -password pass:password
 
 cat > tempdir/Dockerfile << _EOF_
 
