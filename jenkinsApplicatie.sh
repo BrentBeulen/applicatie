@@ -22,7 +22,7 @@ mkdir -p tempdir/https
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
 
-cat > tempdir/https/https.config << _EOF_
+cat > tempdir/https/https << _EOF_
 
 [ req ]
 default_bits       = 2048
