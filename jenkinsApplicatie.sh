@@ -46,7 +46,7 @@ extendedKeyUsage    = critical, 1.3.6.1.5.5.7.3.1
 
 _EOF_
 
-openssl req -config tempdir/https.config -new -out tempdir/https/csr.pem
+openssl req -config tempdir/https/https.config -new -out tempdir/https/csr.pem
 openssl x509 -req -days 365 -extfile tempdir/https/https.config -extensions v3_req -in tempdir/https/csr.pem -signkey key.pem -out tempdir/https/https.crt
 openssl pkcs12 -export -out tempdir/https/https.pfx -inkey key.pem -in tempdir/https/https.crt -password pass:password
 
