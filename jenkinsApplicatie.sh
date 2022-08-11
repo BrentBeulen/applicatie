@@ -17,9 +17,38 @@ set -euo pipefail
 
 mkdir -p tempdir
 mkdir -p tempdir/src
+mkdir -p tempdir/https
 
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
+
+cat > tempdir/https/https.config << _EOF_
+
+[ req ]
+default_bits       = 2048
+default_md         = sha256
+default_keyfile    = key.pem
+prompt             = no
+encrypt_key        = no
+
+distinguished_name = req_distinguished_name
+req_extensions     = v3_req
+x509_extensions    = v3_req
+
+[ req_distinguished_name ]
+commonName             = "localhost"
+
+[ v3_req ]
+subjectAltName      = DNS:localhost
+basicConstraints    = critical, CA:false
+keyUsage            = critical, keyEncipherment
+extendedKeyUsage    = critical, 1.3.6.1.5.5.7.3.1
+
+_EOF_
+
+openssl req -config https.config -new -out csr.pem
+openssl x509 -req -days 365 -extfile https.config -extensions v3_req -in csr.pem -signkey key.pem -out https.crt
+openssl pkcs12 -export -out https.pfx -inkey key.pem -in https.crt -password password
 
 cat > tempdir/Dockerfile << _EOF_
 
