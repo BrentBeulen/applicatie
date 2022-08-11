@@ -28,7 +28,10 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0 As base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 5000
-ENV ASPNETCORE_URLS=https://+:80
+ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_URLS=https://+:443
+ENV ASPNETCORE_Kestrel__Certificates__Default__Password="password"
+ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/home/vagrant/Applicatie/https.pfx
 
 # Copy csproj and restore as distinct layers
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
