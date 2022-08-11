@@ -46,7 +46,7 @@ extendedKeyUsage    = critical, 1.3.6.1.5.5.7.3.1
 
 _EOF_
 
-dotnet dev-certs https -ep /var/jenkins_home/https/https.pfx -p password
+openssl dev-certs https -ep /var/jenkins_home/https/https.pfx -p password
 #openssl req -config /var/jenkins_home/https/https.config -new -out /var/jenkins_home/https/csr.pem
 #openssl x509 -req -days 365 -extfile /var/jenkins_home/https/https.config -extensions v3_req -in /var/jenkins_home/https/csr.pem -signkey key.pem -out /var/jenkins_home/https/https.crt
 #openssl pkcs12 -export -out /var/jenkins_home/https/https.pfx -inkey key.pem -in /var/jenkins_home/https/https.crt -password pass:password
