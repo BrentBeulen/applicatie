@@ -58,8 +58,8 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 EXPOSE 5000
-ENV ASPNETCORE_URLS=https://+:443
-ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_URLS="https://+;http://+"
+ENV ASPNETCORE_HTTPS_PORT=443
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password="password"
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/https/https.pfx
 
@@ -99,5 +99,5 @@ _EOF_
 
 cd tempdir || exit
 docker build -t sportstore .
-docker run -t -p 80:80 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
+docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
 docker ps -a 
