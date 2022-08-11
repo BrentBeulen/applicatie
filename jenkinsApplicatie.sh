@@ -60,7 +60,7 @@ EXPOSE 5000
 ENV ASPNETCORE_URLS=http://+:80
 #ENV ASPNETCORE_URLS=https://+:443
 #ENV ASPNETCORE_Kestrel__Certificates__Default__Password="password"
-#ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/home/vagrant/Applicatie/https/https.config
+#ENV ASPNETCORE_Kestrel__Certificates__Default__Path=/https/https.pfx
 
 # Copy csproj and restore as distinct layers
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
@@ -98,5 +98,5 @@ _EOF_
 
 cd tempdir || exit
 docker build -t sportstore .
-docker run -t -p 80:80 --network vagrant_default --name SportStoreApp sportstore
+docker run -t -p 80:80 --network vagrant_default -v /home/vagrant/Applicatie/https/:/https/ --name SportStoreApp sportstore
 docker ps -a 
