@@ -56,6 +56,7 @@ cat > tempdir/Dockerfile << _EOF_
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 As base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 EXPOSE 5000
 ENV ASPNETCORE_URLS=http://+:80
 ENV ASPNETCORE_URLS=https://+:443
@@ -98,5 +99,5 @@ _EOF_
 
 cd tempdir || exit
 docker build -t sportstore .
-docker run -t -p 80:80 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
+docker run -t -p 443:443 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
 docker ps -a 
