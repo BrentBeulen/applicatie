@@ -55,7 +55,8 @@ cat > tempdir/Dockerfile << _EOF_
 # asp.net SDK versie 5.0
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 As base
 WORKDIR /app
-EXPOSE 80;443
+EXPOSE 80
+EXPOSE 443
 ENV ASPNETCORE_URLS="https://+;http://+"
 ENV ASPNETCORE_HTTPS_PORT=443
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password="password"
