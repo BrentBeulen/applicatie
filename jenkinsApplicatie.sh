@@ -26,7 +26,7 @@ cat > /var/jenkins_home/https/https.config << _EOF_
 
 [ req ]
 default_bits       = 2048
-default_md         = sha256
+default_md         = rsa
 default_keyfile    = key.pem
 prompt             = no
 encrypt_key        = no
