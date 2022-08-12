@@ -9,7 +9,7 @@
 #            }
 #        }
 #        stage('Build') {
-#            build 'BuildSampleApp'
+#            build 'SportStoreBuild'
 #        }
 #    }
 
