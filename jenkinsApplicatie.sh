@@ -1,17 +1,17 @@
 #!/bin/bash
 # bash ./jenkinsApplicatie.sh
 
-#    node {
-#        stage('Preparation') {
-#            catchError(buildResult: 'SUCCESS') {
-#                sh 'docker stop SportStoreApp'
-#                sh 'docker rm SportStoreApp'
-#            }
-#        }
-#        stage('Build') {
-#            build 'SportStoreBuild'
+#node ('TestOmgeving3'){
+#    stage('Preparation') {
+#        catchError(buildResult: 'SUCCESS') {
+#            sh 'sudo docker stop SportStoreApp'
+#            sh 'sudo docker rm SportStoreApp'
 #        }
 #    }
+#    stage('Build') {
+#        build 'SportStoreBuild'
+#    }
+#}
 
 set -euo pipefail
 
