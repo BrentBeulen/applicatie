@@ -17,13 +17,13 @@ set -euo pipefail
 
 mkdir -p tempdir
 mkdir -p tempdir/src
-mkdir -p /var/jenkins_home/https
+sudo mkdir -p /home/vagrant/https
 
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
 
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /var/jenkins_home/https/https.key -out /var/jenkins_home/https/https.crt -subj "/C=BE/ST=Vlaams-Brabant/L=VHalle/O=DevOps/OU=Operations/CN=localhost"
-openssl pkcs12 -export -out /var/jenkins_home/https/https.pfx -inkey /var/jenkins_home/https/https.key -in /var/jenkins_home/https/https.crt -password pass:password
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/vagrant/https/https.key -out /home/vagrant/https/https.crt -subj "/C=BE/ST=Vlaams-Brabant/L=VHalle/O=DevOps/OU=Operations/CN=localhost"
+openssl pkcs12 -export -out /home/vagrant/https/https.pfx -inkey /home/vagrant/https/https.key -in /home/vagrant/https/https.crt -password pass:password
 
 cat > tempdir/Dockerfile << _EOF_
 
@@ -73,5 +73,5 @@ _EOF_
 
 cd tempdir || exit
 docker build -t sportstore .
-docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /var/jenkins_home/https/:/https/ --name SportStoreApp sportstore
+docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /home/vagrant/https/:/https/ --name SportStoreApp sportstore
 docker ps -a 
