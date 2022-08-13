@@ -72,6 +72,6 @@ ENTRYPOINT ["dotnet", "Server.dll"]
 _EOF_
 
 cd tempdir || exit
-docker build -t sportstore .
+sudo docker build -t sportstore .
 sudo docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /home/vagrant/https/:/https/ --name SportStoreApp sportstore
-docker ps -a 
+sudo docker ps -a 
