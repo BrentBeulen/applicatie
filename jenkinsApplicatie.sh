@@ -77,4 +77,4 @@ ENTRYPOINT ["dotnet", "Server.dll"]
 _EOF_
 
 cd tempdir || exit
-docker build --no-cache --progress=plain -t sportstore .
+docker build -t sportstore .
