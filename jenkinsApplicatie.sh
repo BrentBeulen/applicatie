@@ -14,7 +14,7 @@
 #        build 'SportStoreBuild'
 #    }
 #    stage('Deploy') {
-#        sh 'sudo docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /home/vagrant/https/:/https/ --name SportStoreApp sportstore'
+#        sh 'sudo docker run -t -d -p 80:80 -p 443:443 --network vagrant_default -v /home/vagrant/https/:/https/ --name SportStoreApp sportstore'
 #    }
 #}
 
