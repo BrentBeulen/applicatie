@@ -1,6 +1,8 @@
 #!/bin/bash
+# BUILD JOB COMMANDO
 # bash ./jenkinsApplicatie.sh
 
+# PIPELINE CODE
 #node ('TestOmgeving3'){
 #    stage('Preparation') {
 #        catchError(buildResult: 'SUCCESS') {
@@ -72,6 +74,5 @@ ENTRYPOINT ["dotnet", "Server.dll"]
 _EOF_
 
 cd tempdir || exit
-sudo docker build -t sportstore .
+sudo docker build --no-cache --progress=plain -t sportstore .
 sudo docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /home/vagrant/https/:/https/ --name SportStoreApp sportstore
-sudo docker ps -a 
