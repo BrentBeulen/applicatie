@@ -3,7 +3,7 @@
 # bash ./jenkinsApplicatie.sh
 
 # PIPELINE CODE
-#node ('TestOmgeving3'){
+#node ('TestOmgeving'){
 #    stage('Preparation') {
 #        catchError(buildResult: 'SUCCESS') {
 #            sh 'sudo docker stop SportStoreApp'
