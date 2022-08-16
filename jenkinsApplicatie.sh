@@ -13,6 +13,9 @@
 #    stage('Build') {
 #        build 'SportStoreBuild'
 #    }
+#    stage('Deploy') {
+#        sh 'sudo docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /home/vagrant/https/:/https/ --name SportStoreApp sportstore'
+#    }
 #}
 
 set -euo pipefail
@@ -75,4 +78,3 @@ _EOF_
 
 cd tempdir || exit
 docker build --no-cache --progress=plain -t sportstore .
-# sudo docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /home/vagrant/https/:/https/ --name SportStoreApp sportstore
