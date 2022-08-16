@@ -19,13 +19,13 @@ set -euo pipefail
 
 mkdir -p tempdir
 mkdir -p tempdir/src
-sudo mkdir -p /home/vagrant/https
+mkdir -p /home/vagrant/https
 
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
 
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/vagrant/https/https.key -out /home/vagrant/https/https.crt -subj "/C=BE/ST=Vlaams-Brabant/L=VHalle/O=DevOps/OU=Operations/CN=localhost"
-sudo openssl pkcs12 -export -out /home/vagrant/https/https.pfx -inkey /home/vagrant/https/https.key -in /home/vagrant/https/https.crt -password pass:password
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/vagrant/https/https.key -out /home/vagrant/https/https.crt -subj "/C=BE/ST=Vlaams-Brabant/L=VHalle/O=DevOps/OU=Operations/CN=localhost"
+openssl pkcs12 -export -out /home/vagrant/https/https.pfx -inkey /home/vagrant/https/https.key -in /home/vagrant/https/https.crt -password pass:password
 
 cat > tempdir/Dockerfile << _EOF_
 
@@ -74,5 +74,5 @@ ENTRYPOINT ["dotnet", "Server.dll"]
 _EOF_
 
 cd tempdir || exit
-sudo docker build --no-cache --progress=plain -t sportstore .
+docker build --no-cache --progress=plain -t sportstore .
 # sudo docker run -t -p 80:80 -p 443:443 --network vagrant_default -v /home/vagrant/https/:/https/ --name SportStoreApp sportstore
