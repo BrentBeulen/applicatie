@@ -11,8 +11,8 @@ sudo mkdir -p /home/vagrant/https
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
 
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/vagrant/https/https.key -out /home/vagrant/https/https.crt -subj "/C=BE/ST=Vlaams-Brabant/L=VHalle/O=DevOps/OU=Operations/CN=localhost"
-openssl pkcs12 -export -out /home/vagrant/https/https.pfx -inkey /home/vagrant/https/https.key -in /home/vagrant/https/https.crt -password pass:password
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /home/vagrant/https/https.key -out /home/vagrant/https/https.crt -subj "/C=BE/ST=Vlaams-Brabant/L=VHalle/O=DevOps/OU=Operations/CN=localhost"
+sudo openssl pkcs12 -export -out /home/vagrant/https/https.pfx -inkey /home/vagrant/https/https.key -in /home/vagrant/https/https.crt -password pass:password
 
 cat > tempdir/Dockerfile << _EOF_
 
