@@ -61,4 +61,4 @@ ENTRYPOINT ["dotnet", "Server.dll"]
 _EOF_
 
 cd tempdir || exit
-docker build -t sportstore .
+sudo docker build -t sportstore .
