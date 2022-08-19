@@ -4,10 +4,9 @@
 
 set -euo pipefail
 
-sudo -s
 mkdir -p tempdir
 mkdir -p tempdir/src
-mkdir -p /home/vagrant/https
+sudo mkdir -p /home/vagrant/https
 
 cp SportStore.sln tempdir/.
 cp -r src/* tempdir/src/.
