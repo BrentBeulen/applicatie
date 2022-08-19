@@ -4,6 +4,7 @@
 
 set -euo pipefail
 
+sudo -s
 mkdir -p tempdir
 mkdir -p tempdir/src
 mkdir -p /home/vagrant/https
